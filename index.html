@@ -1,119 +1,548 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Giovanna & Caio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Pinyon+Script&family=Jost:wght@300;400&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Giovanna Paranhos — Resume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #100C24;
+    --panel: #1B1638;
+    --panel-deep: #150F2C;
+    --line: #2C2560;
 
-    html, body {
-      height: 100%;
-    }
+    --ink: #E9E4FF;
+    --ink-dim: #A79FCE;
 
-    body {
-      background: #048279;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-    }
+    --purple: #9D6FFF;
+    --blue: #4FD3FF;
+    --pink: #FF6FB0;
+    --green: #5CFFB0;
+  }
 
-    .photo-wrap {
-      width: 100%;
-      max-width: 520px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2rem;
-    }
+  *{ box-sizing: border-box; }
 
-    .photo-frame {
-      width: 100%;
-      aspect-ratio: 3 / 4;
-      background: rgba(255,255,255,0.12);
-      border-radius: 4px;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+  body{
+    margin:0;
+    background: var(--bg);
+    background-image:
+      linear-gradient(rgba(157,111,255,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(157,111,255,0.07) 1px, transparent 1px);
+    background-size: 24px 24px;
+    color: var(--ink);
+    font-family: 'VT323', monospace;
+    font-size: 19px;
+    line-height: 1.5;
+    -webkit-font-smoothing: none;
+  }
 
-    .photo-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background: repeating-linear-gradient(to bottom, rgba(255,255,255,0.035) 0px, rgba(255,255,255,0.035) 1px, transparent 1px, transparent 3px);
+    pointer-events:none;
+    z-index: 999;
+    mix-blend-mode: overlay;
+  }
 
-    .photo-placeholder {
-      font-family: 'Jost', system-ui, sans-serif;
-      font-weight: 300;
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
-    }
+  a{ color: var(--blue); text-decoration: none; }
+  a:hover{ text-decoration: underline; color: var(--green); }
+  a:focus-visible, button:focus-visible{ outline: 2px solid var(--green); outline-offset: 3px; }
 
-    .caption {
-      text-align: center;
-    }
+  .px{ font-family: 'Press Start 2P', monospace; }
 
-    .names {
-      font-family: 'Snell Roundhand', 'Pinyon Script', cursive;
-      font-size: 72px;
-      line-height: 1.15;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0;
-    }
+  .wrap{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 20px 90px;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 22px;
+    align-items: start;
+  }
+  @media (max-width: 820px){ .wrap{ grid-template-columns: 1fr; } }
 
-    .names .connector {
-      font-family: 'Snell Roundhand', 'Pinyon Script', cursive;
-      font-size: 44px;
-      line-height: 1;
-      margin: -6px 0;
-    }
+  /* ---------- pixel-corner panel frame ---------- */
+  .pxc{
+    clip-path: polygon(
+      0 8px, 8px 8px, 8px 0,
+      calc(100% - 8px) 0, calc(100% - 8px) 8px, 100% 8px,
+      100% calc(100% - 8px), calc(100% - 8px) calc(100% - 8px), calc(100% - 8px) 100%,
+      8px 100%, 8px calc(100% - 8px), 0 calc(100% - 8px)
+    );
+  }
+  .pxc-sm{
+    clip-path: polygon(
+      0 4px, 4px 4px, 4px 0,
+      calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px,
+      100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) 100%,
+      4px 100%, 4px calc(100% - 4px), 0 calc(100% - 4px)
+    );
+  }
 
-    .date {
-      font-family: 'Jost', system-ui, sans-serif;
-      font-weight: 300;
-      font-size: 11px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.7);
-      margin-top: 1rem;
-    }
+  .frame{ padding: 3px; }
+  .frame.c-purple{ background: var(--purple); }
+  .frame.c-blue{ background: var(--blue); }
+  .frame.c-pink{ background: var(--pink); }
+  .frame.c-green{ background: var(--green); }
 
-    @media (max-width: 480px) {
-      .names { font-size: 56px; }
-      .names .connector { font-size: 34px; }
-    }
-  </style>
+  .card{
+    background: var(--panel);
+    padding: 26px 26px 28px;
+    position: relative;
+  }
+
+  /* ---------- sidebar ---------- */
+  .sidebar{ position: sticky; top: 20px; display:flex; flex-direction:column; gap:18px; }
+  @media (max-width: 820px){ .sidebar{ position: static; } }
+
+  .name-card{ text-align:center; }
+
+  .avatar{
+    width: 84px; height: 84px;
+    margin: 0 auto 14px;
+    background: var(--panel-deep);
+    border: 3px solid var(--purple);
+    display:flex; align-items:center; justify-content:center;
+    color: var(--green);
+    font-size: 22px;
+  }
+
+  .name{
+    font-size: 17px;
+    margin: 0 0 10px;
+    color: var(--ink);
+    letter-spacing: 1px;
+    line-height: 1.5;
+  }
+  .cursor{ display:inline-block; color: var(--green); animation: blink 1s steps(1) infinite; }
+  @media (prefers-reduced-motion: reduce){ .cursor{ animation: none; } }
+  @keyframes blink{ 50%{ opacity: 0; } }
+
+  .role{
+    font-size: 20px;
+    color: var(--blue);
+    margin: 0 0 18px;
+  }
+
+  .contact-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; font-size: 18px; text-align:left; }
+  .contact-list li{ display:flex; gap:10px; align-items:baseline; }
+  .contact-list .tag{ color: var(--pink); flex:none; font-size: 15px; }
+  .contact-list a{ color: var(--ink); word-break: break-word; }
+  .contact-list a:hover{ color: var(--green); }
+
+  .side-title{
+    font-size: 13px;
+    color: var(--ink);
+    margin: 0 0 16px;
+    letter-spacing: 1px;
+  }
+  .side-title .brk{ color: var(--pink); }
+
+  .field{ margin-bottom: 16px; }
+  .field:last-child{ margin-bottom: 0; }
+  .field-label{ font-size: 14px; color: var(--ink-dim); letter-spacing: .5px; margin-bottom: 8px; }
+
+  .seg-bar{ display:flex; gap:3px; margin-bottom: 4px; }
+  .seg-bar i{ width:11px; height:16px; background: var(--line); display:block; font-style:normal; }
+  .seg-bar i.on{ background: var(--green); box-shadow: 0 0 6px rgba(92,255,176,.7); }
+  .seg-bar.blue i.on{ background: var(--blue); box-shadow: 0 0 6px rgba(79,211,255,.7); }
+  .seg-bar.pink i.on{ background: var(--pink); box-shadow: 0 0 6px rgba(255,111,176,.7); }
+  .skill-line{ display:flex; justify-content:space-between; align-items:center; font-size: 17px; margin-bottom: 4px; }
+  .skill-line span:last-child{ color: var(--ink-dim); font-size: 14px; }
+
+  .tag-group{ display:flex; flex-wrap:wrap; gap:8px; }
+  .tag{
+    font-size: 13px;
+    padding: 6px 9px;
+    background: var(--panel-deep);
+    border: 2px solid var(--line);
+    color: var(--ink-dim);
+  }
+  .tag.on-blue{ border-color: var(--blue); color: var(--blue); }
+  .tag.on-pink{ border-color: var(--pink); color: var(--pink); }
+  .tag.on-green{ border-color: var(--green); color: var(--green); }
+
+  /* ---------- main ---------- */
+  .main{ display:flex; flex-direction:column; gap:22px; }
+
+  h2.section-title{
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin: 0 0 20px;
+    color: var(--ink);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  h2.section-title .brk{ color: var(--purple); }
+  h2.section-title.blue .brk{ color: var(--blue); }
+  h2.section-title.pink .brk{ color: var(--pink); }
+  h2.section-title.green .brk{ color: var(--green); }
+
+  .hero p{ margin:0; font-size: 20px; max-width: 68ch; color: var(--ink); }
+
+  .timeline{ display:flex; flex-direction:column; gap: 26px; }
+  .job{
+    position:relative;
+    padding-left: 22px;
+    background: repeating-linear-gradient(to bottom, var(--line) 0px, var(--line) 6px, transparent 6px, transparent 11px) 0 0 / 2px 100% no-repeat;
+  }
+  .job::before{
+    content:"";
+    position:absolute; left: -4px; top: 3px;
+    width: 10px; height: 10px;
+    background: var(--purple);
+    transform: rotate(45deg);
+  }
+  .job.blue::before{ background: var(--blue); }
+  .job.pink::before{ background: var(--pink); }
+  .job.green::before{ background: var(--green); }
+
+  .job-head{ display:flex; flex-wrap:wrap; align-items:baseline; gap: 6px 12px; margin-bottom: 4px; }
+  .job-title{ font-weight: 700; font-size: 19px; color: var(--ink); }
+  .job-org{ color: var(--pink); font-size: 18px; }
+  .job-date{
+    margin-left: auto;
+    font-size: 15px;
+    color: var(--ink-dim);
+    white-space: nowrap;
+    letter-spacing: .5px;
+  }
+  .job-loc{ font-size: 15px; color: var(--ink-dim); margin-bottom:2px; }
+  .job p{ margin: 6px 0 0; font-size: 18px; color: var(--ink-dim); }
+  .job ul{ margin: 8px 0 0; padding-left: 22px; font-size: 18px; color: var(--ink-dim); }
+  .job li{ margin-bottom: 4px; }
+  .job li::marker{ color: var(--purple); }
+
+  .skill-row{ display:flex; flex-wrap:wrap; gap:7px; margin-top: 10px; }
+
+  .group-label{
+    font-size: 14px;
+    color: var(--ink);
+    display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;
+    margin: -6px 0 6px;
+    letter-spacing: .5px;
+  }
+  .group-label .brk{ color: var(--green); }
+  .group-label .group-meta{ font-size: 14px; color: var(--ink-dim); font-family:'VT323',monospace; }
+  .group-jobs{ display:flex; flex-direction:column; gap:20px; }
+  .subjob{ padding-left: 18px; border-left: 2px dotted var(--line); }
+  .subjob::before{ display:none; }
+
+  .edu-grid{ display:flex; flex-direction:column; gap:16px; }
+  .edu-item{ display:flex; gap:14px; align-items:flex-start; }
+  .edu-badge{
+    flex:none; width: 40px; height:40px;
+    background: var(--panel-deep);
+    border: 2px solid var(--green);
+    display:flex; align-items:center; justify-content:center;
+    font-size: 11px; color: var(--green);
+  }
+  .edu-degree{ font-weight: 700; font-size:19px; color: var(--ink); }
+  .edu-org{ color: var(--ink-dim); font-size: 17px; }
+  .edu-date{ color: var(--ink-dim); font-size: 15px; letter-spacing:.5px; }
+
+  .pub{
+    background: var(--panel-deep);
+    border-left: 3px solid var(--blue);
+    padding: 16px 18px;
+    font-size: 18px;
+  }
+  .pub .pub-title{ font-weight: 700; margin-bottom:6px; color: var(--ink); }
+  .pub .pub-meta{ color: var(--ink-dim); font-size: 15px; }
+
+  footer{
+    text-align:center;
+    font-size: 12px;
+    color: var(--ink-dim);
+    margin-top: 10px;
+    letter-spacing: 1px;
+  }
+  footer .cursor{ margin-left: 4px; }
+</style>
 </head>
 <body>
 
-  <div class="photo-wrap">
-    <div class="caption">
-      <div class="names">
-        <span>Giovanna</span>
-        <span class="connector">&</span>
-        <span>Caio</span>
+<div class="wrap">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="frame c-purple pxc">
+      <div class="card pxc name-card">
+        <div class="avatar pxc-sm px">GP</div>
+        <h1 class="name px">GIOVANNA<br>PARANHOS<span class="cursor">_</span></h1>
+        <p class="role">data scientist, html enthusiast &amp; recovering physicist</p>
+        <ul class="contact-list">
+          <li><span class="tag px">@</span><a href="mailto:giovannaparanhos@gmail.com">giovannaparanhos@gmail.com</a></li>
+          <li><span class="tag px">IN</span><a href="https://linkedin.com/in/giovannaparanhos" target="_blank" rel="noopener">linkedin.com/in/giovannaparanhos</a></li>
+          <li><span class="tag px">GH</span><a href="https://github.com/giovannaparanhos" target="_blank" rel="noopener">github.com/giovannaparanhos</a></li>
+          <li><span class="tag px">LOC</span><span>MG, Brazil</span></li>
+        </ul>
       </div>
-      <div class="date">09 de julho de 2026</div>
     </div>
 
-    <div class="photo-frame">
-      <img src="us.jpg" alt="Giovanna e Caio">
+    <div class="frame c-green pxc">
+      <div class="card pxc">
+        <p class="side-title px"><span class="brk">&gt;</span> SKILLS.SYS</p>
+
+        <div class="field">
+          <div class="field-label">languages</div>
+          <div class="skill-line"><span>Python</span><span>advanced</span></div>
+          <div class="seg-bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+          <div class="skill-line"><span>SQL</span><span>intermediate</span></div>
+          <div class="seg-bar blue"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></div>
+          <div class="skill-line"><span>R</span><span>basic</span></div>
+          <div class="seg-bar pink"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="skill-line"><span>C++</span><span> </span></div>
+        </div>
+
+        <div class="field">
+          <div class="field-label">tools &amp; platforms</div>
+          <div class="tag-group">
+            <span class="tag on-blue">Databricks</span>
+            <span class="tag on-blue">PySpark</span>
+            <span class="tag on-blue">Apache Spark</span>
+            <span class="tag">Jupyter</span>
+            <span class="tag">Git</span>
+            <span class="tag">Synapse</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="field-label">libraries &amp; methods</div>
+          <div class="tag-group">
+            <span class="tag on-pink">Credit Risk Modeling</span>
+            <span class="tag on-pink">Statistical Analysis</span>
+            <span class="tag">scikit-learn</span>
+            <span class="tag">pandas</span>
+            <span class="tag">NumPy</span>
+            <span class="tag">TensorFlow</span>
+            <span class="tag">OpenCV</span>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+
+    <div class="frame c-pink pxc">
+      <div class="card pxc">
+        <p class="side-title px"><span class="brk">&gt;</span> LANG_PACKS</p>
+        <div class="field">
+          <div class="skill-line"><span>English</span><span>C2</span></div>
+          <div class="seg-bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+        </div>
+        <div class="field">
+          <div class="skill-line"><span>German</span><span>C1</span></div>
+          <div class="seg-bar blue"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+        </div>
+        <div class="field">
+          <div class="skill-line"><span>Italian</span><span>B1</span></div>
+          <div class="seg-bar pink"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="field">
+          <div class="skill-line"><span>Spanish</span><span>B1</span></div>
+          <div class="seg-bar pink"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <div class="frame c-blue pxc">
+      <div class="card pxc hero">
+        <h2 class="section-title blue px"><span class="brk">&gt;</span> ABOUT.TXT</h2>
+        <p>I'm a data scientist at Stone, one of Brazil's largest payments companies, where I build credit risk, behavior scoring, and propensity models that help decide how we extend credit to merchants. My work runs the full lifecycle — feature engineering, master-table construction, model training and evaluation, and production monitoring with retraining — mostly in Databricks with PySpark and SQL.
+Beyond credit modeling, my background spans the wider ML landscape. I've worked across scikit-learn, TensorFlow, and Keras, with hands-on experience in computer vision using OpenCV, and I'm currently deepening that foundation through an MSc in Computer Science focused on Artificial Intelligence.
+Outside of work I'm a persistent, curious learner: I read widely, study languages (fluent in English and German alongside Portuguese), and shoot analog photography.</p>
+      </div>
+    </div>
+
+    <div class="frame c-purple pxc">
+      <div class="card pxc">
+        <h2 class="section-title px"><span class="brk">&gt;</span> EXPERIENCE_LOG</h2>
+        <div class="timeline">
+          <div class="job">
+            <div class="job-head">
+              <span class="job-title">Data Scientist III · Strategy Data Science</span>
+              <span class="job-org">— Stone</span>
+              <span class="job-date">Aug 2025 – Present</span>
+            </div>
+            <div class="job-loc">Full-time · Remote</div>
+            <ul>
+              <li>Build and productionize credit-scoring models, from feature engineering and master-table construction through training, evaluation (AUC, KS, PSI), and deployment in Databricks with PySpark and SQL.</li>
+              <li>Monitor production credit models for drift and stability, retraining as performance degrades.</li>
+              <li>Develop propensity and conversion models combining internal and external credit data to support credit-offer decisions.</li>
+              <li>Optimize large-scale Spark/Databricks pipelines for performance and reliability.</li>
+              <li>Partner cross-functionally with credit, policy, MLOps, and data-engineering stakeholders to scope and ship models.</li>
+            </ul>
+            <div class="skill-row">
+              <span class="tag on-blue">PySpark</span>
+              <span class="tag on-blue">Credit Risk Management</span>
+              <span class="tag">+2 skills</span>
+            </div>
+          </div>
+
+          <div class="job blue">
+            <div class="job-head">
+              <span class="job-title">Data Science Advisor, Credit and Risk Board</span>
+              <span class="job-org">— BDMG</span>
+              <span class="job-date">Apr 2024 – Aug 2025</span>
+            </div>
+            <div class="job-loc">Full-time · Belo Horizonte, MG · Hybrid</div>
+            <ul>
+              <li>Built statistical and machine-learning models for credit risk and provisioning.</li>
+              <li>Served as technical reference for compliance with CMN Resolution 4.966/21 (IFRS 9), directly shaping regulatory compliance and model performance.</li>
+            </ul>
+            <div class="skill-row">
+              <span class="tag on-blue">R</span>
+              <span class="tag on-blue">Apache Spark</span>
+              <span class="tag">+4 skills</span>
+            </div>
+          </div>
+
+          <div class="job green">
+            <div class="group-label px">
+              <span class="brk">&gt;</span> ENACOM Group
+              <span class="group-meta">Full-time · 1 yr 10 mos</span>
+            </div>
+            <div class="group-jobs">
+              <div class="subjob">
+                <div class="job-head">
+                  <span class="job-title">Data Scientist and Tech Lead</span>
+                  <span class="job-date">Feb 2023 – Mar 2024</span>
+                </div>
+                <div class="job-loc">Belo Horizonte, MG · Remote</div>
+                <ul>
+                  <li>Led data science teams across machine-learning projects in the healthcare, energy, and steel sectors.</li>
+                  <li>Delivered computer-vision classification tools, time-series predictive models, and large-scale data processing and visualization solutions for clients.</li>
+                </ul>
+                <div class="skill-row">
+                  <span class="tag on-green">Apache Spark</span>
+                  <span class="tag on-green">Python</span>
+                  <span class="tag">+14 skills</span>
+                </div>
+              </div>
+              <div class="subjob">
+                <div class="job-head">
+                  <span class="job-title">Data Analyst</span>
+                  <span class="job-date">Jun 2022 – Feb 2023</span>
+                </div>
+                <p>Developed machine-learning solutions for client companies using Python, OpenCV, PySpark, scikit-learn, and SQL.</p>
+                <div class="skill-row">
+                  <span class="tag on-green">Algorithms</span>
+                  <span class="tag on-green">Python</span>
+                  <span class="tag">+16 skills</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="frame c-green pxc">
+      <div class="card pxc">
+        <h2 class="section-title green px"><span class="brk">&gt;</span> EDUCATION.DAT</h2>
+        <div class="edu-grid">
+          <div class="edu-item">
+            <div class="edu-badge px">MSc</div>
+            <div>
+              <div class="edu-degree">M.Sc. in Computer Science — UFMG</div>
+              <div class="edu-date">2023 – present</div>
+            </div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-badge px">MSc</div>
+            <div>
+              <div class="edu-degree">M.Sc. in Physical Engineering — Politecnico di Milano</div>
+              <div class="edu-date">2021 · discontinued</div>
+            </div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-badge px">BSc</div>
+            <div>
+              <div class="edu-degree">B.Sc. in Physics — UFMG</div>
+              <div class="edu-date">2017 – 2021</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="frame c-pink pxc">
+      <div class="card pxc">
+        <h2 class="section-title pink px"><span class="brk">&gt;</span> RESEARCH_LOG</h2>
+        <div class="timeline">
+          <div class="job pink">
+            <div class="job-head">
+              <span class="job-title">Graduate Researcher</span>
+              <span class="job-date">Mar 2023 – Present</span>
+            </div>
+            <p>Master's research focused on artificial intelligence. Project on using GANs for pseudo-colorization of medical images to analyze cancer progression.</p>
+          </div>
+
+          <div class="job">
+            <div class="group-label px">
+              <span class="brk">&gt;</span> Universidade Federal de Minas Gerais
+              <span class="group-meta">Apprenticeship · 2 yrs 2 mos</span>
+            </div>
+            <div class="group-jobs">
+              <div class="subjob">
+                <div class="job-head">
+                  <span class="job-title">Undergraduate Scientific Researcher</span>
+                  <span class="job-date">Dec 2019 – Apr 2021</span>
+                </div>
+                <div class="job-loc">Belo Horizonte, MG</div>
+                <p>Built a tumor-detection algorithm in Python using random forests on the lab's cancer-biopsy database, reaching 98% accuracy on healthy-vs-tumor classification and 70% across six tumor types.</p>
+                <div class="skill-row">
+                  <span class="tag on-pink">LaTeX</span>
+                  <span class="tag on-pink">Python</span>
+                  <span class="tag">+5 skills</span>
+                </div>
+              </div>
+              <div class="subjob">
+                <div class="job-head">
+                  <span class="job-title">Undergraduate Scientific Researcher</span>
+                  <span class="job-date">Sep 2018 – Oct 2019</span>
+                </div>
+                <p>Designed and ran an experiment on how students' perception of their academic success relative to peers affected their grades over a semester, analyzing results in R.</p>
+                <div class="skill-row">
+                  <span class="tag on-pink">R</span>
+                  <span class="tag on-pink">Statistical Data Analysis</span>
+                  <span class="tag">+2 skills</span>
+                </div>
+              </div>
+              <div class="subjob">
+                <div class="job-head">
+                  <span class="job-title">Undergraduate Scientific Research Volunteer</span>
+                  <span class="job-date">Sep 2017 – Sep 2018</span>
+                </div>
+                <p>Study group on evolutionary game theory, statistics, and time-series analysis with R.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="frame c-blue pxc">
+      <div class="card pxc">
+        <h2 class="section-title blue px"><span class="brk">&gt;</span> PUBLICATION.PDF</h2>
+        <div class="pub">
+          <div class="pub-title">Prostate cancer tissue classification by multiphoton imaging, automated image analysis and machine learning</div>
+          <div class="pub-meta">Journal of Biophotonics · February 2023 · DOI: <a href="https://doi.org/10.1002/jbio.202200382" target="_blank" rel="noopener">10.1002/jbio.202200382</a></div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="px">[ EOF ]<span class="cursor">_</span></footer>
+
+  </main>
+</div>
 
 </body>
 </html>
